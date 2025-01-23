@@ -1,6 +1,8 @@
 services:
   nginx:
     build: .
+    stdin_open: true
+    tty: true
     container_name: nginx
     ports:
       - 8080:80
