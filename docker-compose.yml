@@ -4,6 +4,7 @@ services:
     container_name: nginx
     ports:
       - 8080:80
+      - 4242:4242
     networks:
       - ft_onion
 
