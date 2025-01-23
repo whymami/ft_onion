@@ -12,7 +12,9 @@ services:
     container_name: tor
     networks:
       - ft_onion
+
+
     
-  networks:
-    ft_onion:
-      driver: bridge
+networks:
+  ft_onion:
+    driver: bridge
