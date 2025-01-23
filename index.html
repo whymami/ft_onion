@@ -1,12 +1,141 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ft_onion</title>
+    <title>Welcome to DarkWeb</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #000000;
+            color: #39ff14; /* Neon yeşil */
+            font-family: 'Courier New', monospace;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 4rem;
+            text-shadow: 0 0 15px #39ff14, 0 0 30px #39ff14;
+            animation: flicker 3s infinite;
+        }
+
+        p {
+            font-size: 1.5rem;
+            color: #ffffff; /* Beyaz yazı */
+            margin-bottom: 40px;
+        }
+
+        button {
+            background-color: #111111;
+            color: #39ff14;
+            border: 2px solid #39ff14;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border-radius: 5px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #39ff14;
+            color: #000000;
+            box-shadow: 0 0 15px #39ff14;
+        }
+
+        .hidden-message {
+            font-size: 1.2rem;
+            color: #ff0000; /* Kırmızı metin */
+            margin-top: 20px;
+            display: none;
+        }
+
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+            70% { opacity: 0.6; }
+        }
+
+        /* Arka plan efektleri */
+        .bg-stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 100%);
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #39ff14;
+            border-radius: 50%;
+            animation: twinkle 3s infinite ease-in-out;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.5); }
+            100% { opacity: 0.5; transform: scale(1); }
+        }
+
+        /* Hareketli yıldız üretimi */
+        .bg-stars .star {
+            animation-delay: calc(-3s * var(--i));
+        }
+    </style>
 </head>
 <body>
-    <h1>Hoş Geldiniz!</h1>
-    <p>Merhaba Dünya.</p>
+    <div class="bg-stars">
+        <!-- Yıldızları burada oluşturuyoruz -->
+        <script>
+            // Rastgele yıldız oluşturma
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement("div");
+                star.classList.add("star");
+                star.style.top = Math.random() * 100 + "vh";
+                star.style.left = Math.random() * 100 + "vw";
+                star.style.setProperty("--i", Math.random());
+                document.querySelector(".bg-stars").appendChild(star);
+            }
+        </script>
+    </div>
+    <h1>Welcome to DarkWeb</h1>
+    <p>Enter the void, uncover the mysteries.</p>
+    <button onclick="showSecretMessage()">Decrypt</button>
+    <div id="secretMessage" class="hidden-message"></div>
+
+    <script>
+        const messages = [
+            "Access denied. Try harder.",
+            "Do you trust your own shadow?",
+            "You have been watched since you arrived.",
+            "Seek the truth, but beware of what you find.",
+            "Your journey has just begun..."
+        ];
+
+        function showSecretMessage() {
+            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            const messageElement = document.getElementById("secretMessage");
+            messageElement.innerHTML = randomMessage;
+            messageElement.style.display = "block";
+        }
+    </script>
 </body>
 </html>
