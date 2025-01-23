@@ -1,9 +1,11 @@
-FROM nginx:alpine
+FROM debian:bullseye-slim
 
-# Nginx konfigürasyon dosyasını kopyala
+RUN apt-get update && apt-get install -y nginx
+
 COPY nginx.conf /etc/nginx/nginx.conf
 
-# Web sitesi içeriğini kopyala (index.html dosyanızı buraya koyun)
 COPY html/ /usr/share/nginx/html/
 
 EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
